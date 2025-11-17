@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #0077cc, #00bfff);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #e6f7ff;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffe600;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: #0077cc;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #00bfff;
+      margin: 10px auto 25px;
+      border-radius: 2px;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Profile Image */
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00bfff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    #projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .project-block {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-block::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+      z-index: 0;
+    }
+
+    .project-block * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-block:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .project-one {
+      background-image: url('/images/OIP.png');
+    }
+
+    .project-two {
+      background-image: url('/images/advithri.png');
+    }
+
+    .project-three {
+      background-image: url('/images/accenture.png');
+    }
+
+    .project-block h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0077cc;
+      color: #fff;
+      font-size: 0.9em;
+      margin-top: auto;
+    }
+
+    /* Subtle fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 30px 15px;
+      }
+
+      .profile-photo {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My Portfolio</h1>
+    <p>Showcasing my skills, journey & creative work</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+  <img src="images/profile.jpeg" alt="Profile Photo" class="profile-photo" />
+    <p>
+      Hello! I'm a passionate developer building impactful and visually engaging web applications.
+      I love solving complex problems, learning new technologies, and contributing to the world of
+      modern software development.
+    </p>
+  </section>
+
+  <section id="projects" class="fade-in">
+    <h2>Projects</h2>
+    <p>Check out some of my featured projects below.</p>
+
+    <div class="project-block project-one">
+      <h2>Project One</h2>
+      <p>Cloud-based application for scalable collaboration.</p>
+    </div>
+
+    <div class="project-block project-two">
+      <h2>Project Two</h2>
+      <p>Creative portfolio design with animations and responsiveness.</p>
+    </div>
+
+    <div class="project-block project-three">
+      <h2>Project Three</h2>
+      <p>CI/CD automation with Jenkins, Docker & Kubernetes.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Portfolio | Built with by Me</p>
+  </footer>
+
+</body>
+</html>

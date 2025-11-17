@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Education History</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fce4ec);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #ffffffcc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #2e7d32;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .education-container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .education-block {
+      background: linear-gradient(135deg, #ffffff, #f9f9f9);
+      border-left: 8px solid #4CAF50;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .education-block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .education-block h2 {
+      margin-top: 0;
+      color: #2e7d32;
+      font-size: 1.5em;
+    }
+
+    .education-block p {
+      margin: 8px 0;
+      color: #555;
+      font-size: 1em;
+    }
+
+    .icon {
+      font-size: 1.2em;
+      margin-right: 8px;
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Projects</h1>
+    <nav>
+      <a href="Intro.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="education-container">
+    <div class="education-block">
+      <h2><span class="icon">🎓</span>Bachelor of Science in Computer Science</h2>
+      <p><strong>University of Example</strong></p>
+      <p>Graduated: 2015</p>
+    </div>
+
+    <div class="education-block">
+      <h2><span class="icon">🤖</span>Master of Science in Artificial Intelligence</h2>
+      <p><strong>Tech Institute</strong></p>
+      <p>Graduated: 2018</p>
+    </div>
+
+    <div class="education-block">
+      <h2><span class="icon">📊</span>Master of Business Administration (MBA)</h2>
+      <p><strong>Global Business School</strong></p>
+      <p>Graduated: 2021</p>
+    </div>
+  </div>
+</body>
+</html>

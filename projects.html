@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Projects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>My Projects</h1>
+    <nav>
+      <a href="Intro.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section id="projects">
+  <!-- Project One -->
+  <div class="project-block project-one" id="projectOne">
+    <h2>Software Developer – The Family Initiative</h2>
+    <p><strong>July 2024 – July 2025</strong></p>
+    <button class="details-btn" id="openProjectOne">View Details</button>
+  </div>
+
+  <!-- Project Two -->
+  <div class="project-block project-two" id="projectTwo">
+    <h2>Software Developer – Advithri Technologies</h2>
+    <p><strong>March 2024 – July 2024</strong></p>
+    <button class="details-btn" id="openProjectTwo">View Details</button>
+  </div>
+
+  <!-- Project Three -->
+  <div class="project-block project-three" id="projectThree">
+    <h2>Associate Software Developer – Accenture</h2>
+    <p><strong>Oct 2021 – Aug 2022</strong></p>
+    <button class="details-btn" id="openProjectThree">View Details</button>
+  </div>
+</section>
+
+<!-- Popup for Project One -->
+<div id="projectOnePopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopupOne">&times;</span>
+    <h2>Software Developer – The Family Initiative</h2>
+    <p><strong>July 2024 – July 2025</strong></p>
+    <ul>
+      <li>Improved UI design and increased page load speed using Telerik UI in ASP.NET MVC applications.</li>
+      <li>Leveraged Azure Logic Apps and Azure Functions to automate recurring financial workflows</li>
+      <li>Conducted data analysis with SSMS, achieving a 10% improvement in business decision-making.</li>
+      <li>Fixed over 50 bugs and optimized VB.NET and C# code, enhancing software reliability and performance.</li>
+      <li>Boosted system stability by 25% through debugging complex ASP.NET issues.</li>
+      <li>Implemented high-throughput, fault-tolerant data pipelines using Apache Kafka; handled error logging and notifications in SSIS packages for robust error tracking.</li>
+      <li>Developed SQL queries and stored procedures, reducing query execution time by 20%.</li>
+      <li>Utilized Azure DevOps and Git for version control, reducing deployment issues by 15% and ensuring 99% system uptime with efficient post-deployment support.</li>
+      <li>Integrated Elasticsearch for advanced data retrieval and full-text search capabilities.</li>
+      <li>Ensured API reliability and performance via continuous testing in Postman; identified and resolved issues to improve response times and accuracy in threat detection.</li>
+      <li>Documented on-call response protocols, reducing average incident resolution time and improving response efficiency.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Popup for Project Two -->
+<div id="projectTwoPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopupTwo">&times;</span>
+    <h2>Software Developer – Advithri Technologies</h2>
+    <p><strong>March 2024 – July 2024</strong></p>
+    <ul>
+    <li>Led the design and development of enterprise-level applications using C# and .NET, resulting in improved system performance and scalability.</li>
+    <li>Created and maintained robust RESTful APIs using ASP.NET Core, enabling seamless integration with various front-end and third-party applications.</li>
+    <li>Expertly managed application state using Redux, ensuring consistent and predictable state transitions across complex applications.</li>
+    <li>Optimized complex stored procedures, views, and triggers in Microsoft SQL Server to enhance database performance and reliability.</li>
+    <li>Implemented web accessibility standards (WCAG 2.1) to ensure inclusive and accessible user experiences, resulting in a 30% increase in usability for users with disabilities.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Popup for Project Three-->
+<div id="projectThreePopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopupThree">&times;</span>
+    <h2>Software Developer – Advithri Technologies</h2>
+    <p><strong>March 2024 – July 2024</strong></p>
+    <ul>  
+    <li>Spearheaded development of responsive web applications leveraging React.js, Bootstrap, HTML, CSS, Sass, JavaScript, and jQuery, resulting in improvement in user engagement metrics.</li>
+    <li>Utilized Flutter’s widgets and state management to create responsive and dynamic user interfaces tailored to client requirements.</li>
+    <li>Engineered databases, including NoSQL (MongoDB) and data warehouse models, leading increase in database performance.</li>
+    <li>Cooperated with cross-functional teams to architect and deploy cloud solutions on AWS (S3, EC2, Lambda), enhancing scalability and reducing infrastructure costs by 15%.</li>
+    <li>Built CI/CD pipelines using Jenkins, Azure DevOps, reducing release times and manual errors.</li>
+    </ul>
+  </div>
+</div>
+
+ <!-- Skills Section -->
+<section id="skills">
+  <h2>Skills</h2>
+
+  <div class="skills-container">
+    <div class="skill-block programming">
+      <img src="/images/codelang.png" alt="Programming Languages Icon" />
+      <h3>Programming Languages</h3>
+      <p>C#, VB.NET, JavaScript, SQL</p>
+    </div>
+
+    <div class="skill-block frameworks">
+      <img src="/images/programming-code-signs.png" alt="Frameworks and Tools Icon" />
+      <h3>Frameworks & Tools</h3>
+      <p>ASP.NET MVC, ASP.NET Core, Redux, Telerik UI</p>
+    </div>
+
+    <div class="skill-block cloud">
+      <img src="/images/devops.png" alt="Cloud and DevOps Icon" />
+      <h3>Cloud & DevOps</h3>
+      <p>Azure Functions, Azure Logic Apps, Azure DevOps, Git</p>
+    </div>
+
+    <div class="skill-block databases">
+      <img src="/images/database.png" alt="Databases Icon" />
+      <h3>Databases</h3>
+      <p>SQL Server (SSMS), Elasticsearch</p>
+    </div>
+
+    <div class="skill-block messaging">
+      <img src="/images/message.png" alt="Data and Messaging Icon" />
+      <h3>Data & Messaging</h3>
+      <p>Apache Kafka, RESTful APIs</p>
+    </div>
+
+    <div class="skill-block debugging">
+      <img src="/images/debugging.png" alt="Testing and Debugging Icon" />
+      <h3>Testing & Debugging</h3>
+      <p>Postman, Debugging ASP.NET, Error Logging</p>
+    </div>
+
+    <div class="skill-block uiux">
+      <img src="/images/framework.png" alt="UI/UX and Other Skills Icon" />
+      <h3>Other</h3>
+      <p>UI/UX Optimization, Accessibility (WCAG 2.1), On-call Support</p>
+    </div>
+  </div>
+</section>
+  <footer>
+    <p>&copy; 2025 My Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
