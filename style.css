@@ -76,15 +76,15 @@ footer {
 
 /* Individual project backgrounds */
 .project-one {
-  background-image: url('/images/OIP.png');
+  background-image: url('images/OIP.png');
 }
 
 .project-two {
-  background-image: url('/images/advithri.png');
+  background-image: url('images/advithri.png');
 }
 
 .project-three {
-  background-image: url('/images/accenture.png');
+  background-image: url('images/accenture.png');
 }
 
 /* Headings */
@@ -278,4 +278,5 @@ form button {
 form button:hover {
   background-color: #005fa3;
   transform: scale(1.05);
+
 }
