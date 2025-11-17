@@ -76,11 +76,11 @@ footer {
 
 /* Individual project backgrounds */
 .project-one {
-  background-image: url('../images/OIP.png');
+  background-image: url('images/OIP.png');
 }
 
 .project-two {
-  background-image: url('../images/advithri.png');
+  background-image: url('images/advithri.png');
 }
 
 .project-three {
@@ -280,6 +280,7 @@ form button:hover {
   transform: scale(1.05);
 
 }
+
 
 
 
