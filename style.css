@@ -76,7 +76,7 @@ footer {
 
 /* Individual project backgrounds */
 .project-one {
-  background-image: url('./images/OIP.png');
+  background-image: url('../images/OIP.png');
 }
 
 .project-two {
@@ -280,5 +280,6 @@ form button:hover {
   transform: scale(1.05);
 
 }
+
 
 
