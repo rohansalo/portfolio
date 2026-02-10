@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const successMessage = document.getElementById("feedbackSuccess");
   const errorMessage = document.getElementById("feedbackError");
 
-  if (feedbackForm) {
+  if (feedbackForm && successMessage && errorMessage) {
     feedbackForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -84,6 +84,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Validate required fields
       if (!rating || !message) {
+        errorMessage.textContent = "Please fill in all required fields.";
+        errorMessage.style.display = "block";
+        setTimeout(() => {
+          errorMessage.style.display = "none";
+        }, 3000);
+        return;
+      }
+
+      // Validate email format if provided
+      if (email && !isValidEmail(email)) {
+        errorMessage.textContent = "Please enter a valid email address.";
         errorMessage.style.display = "block";
         setTimeout(() => {
           errorMessage.style.display = "none";
@@ -116,3 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Email validation helper function
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
