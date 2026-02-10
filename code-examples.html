@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Examples - FluentValidation Fix</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .code-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .code-section {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .code-section h3 {
+      color: #0077cc;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .issue-badge {
+      background-color: #ff4444;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .fixed-badge {
+      background-color: #44cc44;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    pre {
+      background-color: #f5f5f5;
+      border-left: 4px solid #0077cc;
+      padding: 20px;
+      overflow-x: auto;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .explanation {
+      background-color: #e6f7ff;
+      border-left: 4px solid #00bfff;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .explanation h4 {
+      margin-top: 0;
+      color: #0077cc;
+    }
+
+    .highlight-error {
+      background-color: #ffe6e6;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
+    .highlight-fix {
+      background-color: #e6ffe6;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Code Examples</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="code-examples.html">Code Examples</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="code-container">
+    <section class="code-section">
+      <h2>FluentValidation: Date Validation Fix</h2>
+      <p>A common validation scenario in enterprise applications is ensuring that end dates occur after start dates. Here's an example of a subtle bug in FluentValidation and how to fix it.</p>
+    </section>
+
+    <section class="code-section">
+      <span class="issue-badge">❌ ISSUE</span>
+      <h3>Problematic Code</h3>
+      <pre><code>this.RuleFor(x => x.EndDate).MustAsync(async (model, endDate, cancellation) =>
+{
+    if (endDate.HasValue)
+    {
+        <span class="highlight-error">return model.StartDate <= endDate;</span>
+    }
+
+    return true;
+}).WithMessage(model =>
+{
+    var addressType = this.Context.AddressTypes
+        .Where(a => a.AddressTypeId == model.AddressTypeId && !a.Deleted)
+        .Select(a => a.Description)
+        .FirstOrDefault();
+
+    var addressTypeLabel = string.IsNullOrWhiteSpace(addressType)
+        ? "Physical/Mailing"
+        : addressType;
+
+    return this.ContentProvider.GetContent(
+        "providerAddress.endDate.afterStartDate",
+        $"The end date for the {addressTypeLabel} Address must be <span class="highlight-error">after</span> the start date.").Result;
+});</code></pre>
+
+      <div class="explanation">
+        <h4>🐛 The Problem</h4>
+        <p><strong>Logical Inconsistency:</strong> The validation returns <code>true</code> when <code>model.StartDate <= endDate</code>, which allows the end date to be <strong>equal to or after</strong> the start date. However, the error message states that the end date must be <strong>after</strong> the start date (implying strictly greater than).</p>
+        <ul>
+          <li>The condition <code>model.StartDate <= endDate</code> allows <code>StartDate == EndDate</code></li>
+          <li>The message says "must be after", which implies <code>StartDate < EndDate</code></li>
+          <li>This creates confusion about the actual business rule being enforced</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="code-section">
+      <span class="fixed-badge">✅ FIXED</span>
+      <h3>Corrected Code (Option 1: Strictly After)</h3>
+      <p>If the business requirement is that the end date must be <strong>strictly after</strong> the start date:</p>
+      <pre><code>this.RuleFor(x => x.EndDate).MustAsync(async (model, endDate, cancellation) =>
+{
+    if (endDate.HasValue)
+    {
+        <span class="highlight-fix">return model.StartDate < endDate;</span>
+    }
+
+    return true;
+}).WithMessage(model =>
+{
+    var addressType = this.Context.AddressTypes
+        .Where(a => a.AddressTypeId == model.AddressTypeId && !a.Deleted)
+        .Select(a => a.Description)
+        .FirstOrDefault();
+
+    var addressTypeLabel = string.IsNullOrWhiteSpace(addressType)
+        ? "Physical/Mailing"
+        : addressType;
+
+    return this.ContentProvider.GetContent(
+        "providerAddress.endDate.afterStartDate",
+        $"The end date for the {addressTypeLabel} Address must be after the start date.").Result;
+});</code></pre>
+
+      <div class="explanation">
+        <h4>✨ The Fix</h4>
+        <p>Changed the condition from <code><=</code> to <code>&lt;</code> to match the error message, ensuring the end date must be strictly after the start date.</p>
+      </div>
+    </section>
+
+    <section class="code-section">
+      <span class="fixed-badge">✅ ALTERNATIVE</span>
+      <h3>Corrected Code (Option 2: On or After)</h3>
+      <p>If the business requirement allows the end date to be <strong>on or after</strong> the start date:</p>
+      <pre><code>this.RuleFor(x => x.EndDate).MustAsync(async (model, endDate, cancellation) =>
+{
+    if (endDate.HasValue)
+    {
+        return model.StartDate <= endDate;
+    }
+
+    return true;
+}).WithMessage(model =>
+{
+    var addressType = this.Context.AddressTypes
+        .Where(a => a.AddressTypeId == model.AddressTypeId && !a.Deleted)
+        .Select(a => a.Description)
+        .FirstOrDefault();
+
+    var addressTypeLabel = string.IsNullOrWhiteSpace(addressType)
+        ? "Physical/Mailing"
+        : addressType;
+
+    return this.ContentProvider.GetContent(
+        "providerAddress.endDate.afterStartDate",
+        $"The end date for the {addressTypeLabel} Address must be <span class="highlight-fix">on or after</span> the start date.").Result;
+});</code></pre>
+
+      <div class="explanation">
+        <h4>✨ The Alternative Fix</h4>
+        <p>Updated the error message from "after" to "on or after" to match the validation logic that allows equal dates.</p>
+      </div>
+    </section>
+
+    <section class="code-section">
+      <h3>Key Takeaways</h3>
+      <ul>
+        <li><strong>Consistency:</strong> Validation logic and error messages must align with the business requirements</li>
+        <li><strong>Clarity:</strong> Use precise language - "after" (>) vs "on or after" (>=)</li>
+        <li><strong>Testing:</strong> Always test edge cases, including when StartDate equals EndDate</li>
+        <li><strong>Code Review:</strong> Such subtle bugs are easily caught during code reviews</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My Portfolio</p>
+  </footer>
+
+</body>
+</html>
