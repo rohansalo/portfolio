@@ -43,7 +43,7 @@ if (openBtn2 && popup2 && closeBtn2) {
 
 // Project Three
 const openBtn3 = document.getElementById("openProjectThree");
-const popup3= document.getElementById("projectThreePopup");
+const popup3 = document.getElementById("projectThreePopup");
 const closeBtn3 = document.getElementById("closePopupThree");
 
 if (openBtn3 && popup3 && closeBtn3) {
@@ -76,11 +76,21 @@ document.addEventListener("DOMContentLoaded", () => {
       successMessage.style.display = "none";
       errorMessage.style.display = "none";
 
-      // Get form values
-      const name = document.getElementById("feedbackName").value.trim();
-      const email = document.getElementById("feedbackEmail").value.trim();
-      const rating = document.getElementById("feedbackRating").value;
-      const message = document.getElementById("feedbackMessage").value.trim();
+      // Get form values with null safety
+      const nameField = document.getElementById("feedbackName");
+      const emailField = document.getElementById("feedbackEmail");
+      const ratingField = document.getElementById("feedbackRating");
+      const messageField = document.getElementById("feedbackMessage");
+
+      if (!nameField || !emailField || !ratingField || !messageField) {
+        console.error("Form elements not found");
+        return;
+      }
+
+      const name = nameField.value.trim();
+      const email = emailField.value.trim();
+      const rating = ratingField.value;
+      const message = messageField.value.trim();
 
       // Validate required fields
       if (!rating || !message) {
